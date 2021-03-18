@@ -1,5 +1,9 @@
 <template>
   <form class="form">
+    <div class="form-group">
+      <input v-model="enteredCurrency" type="email" class="input-currency form-control form-control-sm" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="0">
+    </div>
+
     <div class="select-wrapper">
       <select v-model="currencyFirst" class="custom-select custom-select-sm mb-1 mr-1">
         <option selected>Choose the currency</option>
@@ -16,11 +20,8 @@
       </select>
     </div>
 
-    <div class="form-group">
-      <input v-model="enteredCurrency" type="email" class="form-control form-control-sm" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="0">
-    </div>
+    <button type="submit" @click.prevent="passData" class="btn btn-primary mt-3">Submit</button>
 
-    <button type="submit" @click.prevent="passData" class="btn btn-primary">Submit</button>
   </form>
 </template>
 
@@ -40,7 +41,11 @@ export default {
   },
   methods: {
     passData() {
-      console.log(this.enteredCurrency, this.currencyFirst, this.currencySecond)
+      if (this.enteredCurrency && this.currencyFirst && this.currencySecond) {
+        console.log(this.enteredCurrency)
+        console.log(this.currencyFirst)
+        console.log(this.currencySecond)
+      }
     }
   }
 
@@ -50,11 +55,16 @@ export default {
 <style scoped lang="scss">
   .form {
     margin: 0 auto;
-    max-width: 600px;
+    max-width: 800px;
   }
 
   .select-wrapper {
     display: flex;
+  }
+
+  .input-currency {
+    min-height: 100px;
+    text-align: center;
   }
 
 </style>

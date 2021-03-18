@@ -11,8 +11,7 @@ import Form from '@/components/Form.vue';
 export default {
   name: 'Home',
   components: {
-      Form,
-
+      Form
   }
 }
 </script>

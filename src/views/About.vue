@@ -1,5 +1,5 @@
 <template>
   <div class="about">
-    <h4>There will be a list of currencies</h4>
+    <h5 class="mt-3">There will be a list of currencies</h5>
   </div>
 </template>
