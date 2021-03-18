@@ -1,7 +1,7 @@
 <template>
   <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
+    <router-link to="/">Currency converter</router-link> |
+    <router-link to="/about">Currencies</router-link>
   </div>
   <router-view/>
 </template>
@@ -27,4 +27,7 @@
     }
   }
 }
+@import "~bootstrap/dist/css/bootstrap.css";
 </style>
+
+
