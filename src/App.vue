@@ -1,7 +1,7 @@
 <template>
 <div class="nav">
-  <router-link to="/">Currency converter</router-link>
-  <router-link to="/about">Currencies</router-link>
+  <router-link to="/">Converter</router-link>
+  <router-link to="/currencies">Currencies</router-link>
 </div>
   <router-view/>
 </template>
@@ -12,6 +12,7 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
+  color: #758395;
 }
 
 .nav {

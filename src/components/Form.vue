@@ -51,7 +51,7 @@ export default {
 }
 </script>
 
-<style scoped lang="scss">
+<style lang="scss">
   .form {
     margin: 0 auto;
     max-width: 800px;

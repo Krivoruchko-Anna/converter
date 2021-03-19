@@ -1,5 +1,5 @@
 <template>
-  <div class="home">
+  <div class="converter">
 <!--    <img alt="Vue logo" src="../assets/logo.png">-->
     <Form/>
   </div>
@@ -9,7 +9,7 @@
 import Form from '@/components/Form.vue';
 
 export default {
-  name: 'Home',
+  name: 'Converter',
   components: {
       Form
   }
