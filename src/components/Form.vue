@@ -5,55 +5,49 @@
     </div>
 
     <div class="select-wrapper">
-      <select v-model="currencyFirst" class="custom-select custom-select-sm">
+      <select v-model="firstCurrency" class="custom-select custom-select-sm">
         <option selected>Choose the currency</option>
         <option v-for="(currency, i) in listOfCurrencies" :value="currency" :key="i" selected>{{ currency }}</option>
       </select>
 
       <div class="equals">=</div>
 
-      <select v-model="currencySecond" class="custom-select custom-select-sm">
+      <select v-model="secondCurrency" class="custom-select custom-select-sm">
         <option selected>Choose the currency</option>
         <option v-for="(currency, i) in listOfCurrencies" :value="currency" :key="i" selected>{{ currency }}</option>
       </select>
     </div>
 
-    <button type="submit" @click.prevent="passData" class="btn btn-primary btn-sm">Submit</button>
+    <button type="submit" @click.prevent="" class="btn btn-primary btn-sm">Submit</button>
 
   </form>
 </template>
 
 <script>
+import { mapMutations, mapGetters, mapActions } from 'vuex'
+
 export default {
   name: 'HelloWorld',
   props: {
     msg: String
   },
-  data() {
-    return {
-      enteredCurrency: '',
-      currencyFirst: '',
-      currencySecond: '',
-      listOfCurrencies: ['RUB', 'USD', 'EUR', 'BYN', 'BGP', 'PLN']
-
-    }
+  computed: {
+    ...mapGetters(['listOfCurrencies', 'enteredCurrency', 'firstCurrency', 'secondCurrency']),
   },
   methods: {
-    passData() {
-      if (this.enteredCurrency && this.currencyFirst && this.currencySecond) {
-        console.log(this.enteredCurrency)
-        console.log(this.currencyFirst)
-        console.log(this.currencySecond)
-      }
-    }
+    ...mapMutations(['fetchCurrencies']),
+    ...mapActions(['showOptions'])
+  },
+  mounted() {
+    this.$store.dispatch('fetchCurrencies');
+    console.log(this.listOfCurrencies);
   }
-
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
   .form {
-    margin: 0 auto;
+    margin: 20px auto 0 auto;
     max-width: 800px;
     display: flex;
     justify-content: space-between;

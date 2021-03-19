@@ -15,7 +15,7 @@ import TableComponent from "../components/Table";
 
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
   .currencies {
     max-width: 800px;
     margin: 0 auto;
