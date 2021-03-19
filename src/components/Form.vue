@@ -24,19 +24,15 @@
 </template>
 
 <script>
-import { mapMutations, mapGetters, mapActions } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 
 export default {
   name: 'HelloWorld',
-  props: {
-    msg: String
-  },
   computed: {
     ...mapGetters(['listOfCurrencies', 'enteredCurrency', 'firstCurrency', 'secondCurrency']),
   },
   methods: {
-    ...mapMutations(['fetchCurrencies']),
-    ...mapActions(['showOptions']),
+    ...mapActions(['showOptions', 'fetchCurrencies']),
     testListItems() {
       console.log(this.listOfCurrencies);
     }

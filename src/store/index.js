@@ -3,7 +3,7 @@ import { fetchData } from "../requests";
 
 export default createStore({
   state: {
-    listOfCurrencies: [],
+    listOfCurrencies: [122],
     enteredCurrency: '',
     firstCurrency: '',
     secondCurrency: ''
@@ -23,14 +23,17 @@ export default createStore({
     }
   },
   mutations: {
-
+    testData(state) {
+       state.listOfCurrencies.push('345');
+    }
   },
   actions: {
-    async fetchCurrencies(state) {
+    async fetchCurrencies({commit, state}) {
       state.listOfCurrencies = await fetchData();
-      console.log(state.listOfCurrencies);
+      commit('testData');
     },
-    showOptions(state) {
+    showOptions({commit, state}) {
+      commit('testData');
       console.log(state.firstCurrency)
       console.log(state.enteredCurrency)
       console.log(state.secondCurrency)
