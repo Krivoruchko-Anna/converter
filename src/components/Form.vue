@@ -5,14 +5,16 @@
     </div>
 
     <div class="select-wrapper">
-      <select v-model="currencyFirst" class="custom-select custom-select-sm mb-1 mr-1">
+      <select v-model="currencyFirst" class="custom-select custom-select-sm">
         <option selected>Choose the currency</option>
         <option value="1">One</option>
         <option value="2">Two</option>
         <option value="3">Three</option>
       </select>
 
-      <select v-model="currencySecond" class="custom-select custom-select-sm mb-1">
+      <div class="equals">=</div>
+
+      <select v-model="currencySecond" class="custom-select custom-select-sm">
         <option selected>Choose the currency</option>
         <option value="1">One</option>
         <option value="2">Two</option>
@@ -20,7 +22,7 @@
       </select>
     </div>
 
-    <button type="submit" @click.prevent="passData" class="btn btn-primary mt-3">Submit</button>
+    <button type="submit" @click.prevent="passData" class="btn btn-primary btn-sm">Submit</button>
 
   </form>
 </template>
@@ -56,15 +58,30 @@ export default {
   .form {
     margin: 0 auto;
     max-width: 800px;
+    display: flex;
+    justify-content: space-between;
   }
 
   .select-wrapper {
     display: flex;
+    max-width: 340px;
   }
 
   .input-currency {
-    min-height: 100px;
     text-align: center;
+  }
+
+  .form-group {
+    width: calc(100% - 450px);
+  }
+
+  .btn {
+    height: 30px;
+  }
+
+  .equals {
+    margin: 0 10px;
+    line-height: 2;
   }
 
 </style>
