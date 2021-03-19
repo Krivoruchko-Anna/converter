@@ -7,18 +7,14 @@
     <div class="select-wrapper">
       <select v-model="currencyFirst" class="custom-select custom-select-sm">
         <option selected>Choose the currency</option>
-        <option value="1">One</option>
-        <option value="2">Two</option>
-        <option value="3">Three</option>
+        <option v-for="(currency, i) in listOfCurrencies" :value="currency" :key="i" selected>{{ currency }}</option>
       </select>
 
       <div class="equals">=</div>
 
       <select v-model="currencySecond" class="custom-select custom-select-sm">
         <option selected>Choose the currency</option>
-        <option value="1">One</option>
-        <option value="2">Two</option>
-        <option value="3">Three</option>
+        <option v-for="(currency, i) in listOfCurrencies" :value="currency" :key="i" selected>{{ currency }}</option>
       </select>
     </div>
 
@@ -37,7 +33,8 @@ export default {
     return {
       enteredCurrency: '',
       currencyFirst: '',
-      currencySecond: ''
+      currencySecond: '',
+      listOfCurrencies: ['RUB', 'USD', 'EUR', 'BYN', 'BGP', 'PLN']
 
     }
   },
