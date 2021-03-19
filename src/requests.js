@@ -11,7 +11,7 @@ export const fetchData = async () => {
         return list;
     }
     catch(e) {
-        return []
+        return [];
     }
 }
 

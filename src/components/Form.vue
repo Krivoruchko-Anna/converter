@@ -18,7 +18,7 @@
       </select>
     </div>
 
-    <button type="submit" @click.prevent="" class="btn btn-primary btn-sm">Submit</button>
+    <button type="submit" @click.prevent="testListItems" class="btn btn-primary btn-sm">Submit</button>
 
   </form>
 </template>
@@ -36,11 +36,13 @@ export default {
   },
   methods: {
     ...mapMutations(['fetchCurrencies']),
-    ...mapActions(['showOptions'])
+    ...mapActions(['showOptions']),
+    testListItems() {
+      console.log(this.listOfCurrencies);
+    }
   },
   mounted() {
     this.$store.dispatch('fetchCurrencies');
-    console.log(this.listOfCurrencies);
   }
 }
 </script>

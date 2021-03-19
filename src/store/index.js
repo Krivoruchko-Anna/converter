@@ -10,7 +10,7 @@ export default createStore({
   },
   getters: {
     listOfCurrencies(state) {
-      return state.listOfCurrencies
+       return state.listOfCurrencies
     },
     enteredCurrency(state) {
       return state.enteredCurrency
@@ -23,6 +23,7 @@ export default createStore({
     }
   },
   mutations: {
+
   },
   actions: {
     async fetchCurrencies(state) {
