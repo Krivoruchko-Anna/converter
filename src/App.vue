@@ -30,8 +30,17 @@
   a {
     font-weight: bold;
     color: #758395;
+    text-decoration: none;
+    transition: .4s all;
+    &:hover {
+      color: #a8b1bc;
+    }
+
     &.router-link-exact-active {
-      color: #4a9bf2;
+      color: #2a84e5;
+      &:hover {
+        color: #7eb4ed;
+      }
     }
   }
 }

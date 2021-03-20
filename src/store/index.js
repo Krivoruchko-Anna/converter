@@ -3,40 +3,54 @@ import { fetchData } from "../requests";
 
 export default createStore({
   state: {
-    listOfCurrencies: [122],
-    enteredCurrency: '',
-    firstCurrency: '',
-    secondCurrency: ''
+    listOfCurrencies: [],
+    enteredSum: null,
+    firstCurrency: null,
+    secondCurrency: null,
+    showOutcome: false
   },
   getters: {
     listOfCurrencies(state) {
-       return state.listOfCurrencies
+       return state.listOfCurrencies;
     },
-    enteredCurrency(state) {
-      return state.enteredCurrency
+    enteredSum(state) {
+      return state.enteredSum;
     },
     firstCurrency(state) {
-      return state.firstCurrency
+      return state.firstCurrency;
     },
     secondCurrency(state) {
-      return state.secondCurrency
+      return state.secondCurrency;
+    },
+    showOutcome(state) {
+      return state.showOutcome;
     }
   },
   mutations: {
-    testData(state) {
-       state.listOfCurrencies.push('345');
+    enterSum(state, sum) {
+      const regExp = /\d/;
+      if (sum.match(regExp)) {
+        state.enteredSum = sum;
+        state.showOutcome = false;
+      }
+    },
+    enterFirstCurrency(state, cur) {
+      state.firstCurrency = cur;
+      state.showOutcome = false;
+    },
+    enterSecondCurrency(state, cur) {
+      state.secondCurrency = cur;
+      state.showOutcome = false;
+    },
+    showResults(state) {
+      if (state.enteredSum && state.firstCurrency && state.secondCurrency) {
+        state.showOutcome = true;
+      }
     }
   },
   actions: {
-    async fetchCurrencies({commit, state}) {
+    async fetchCurrencies({state}) {
       state.listOfCurrencies = await fetchData();
-      commit('testData');
     },
-    showOptions({commit, state}) {
-      commit('testData');
-      console.log(state.firstCurrency)
-      console.log(state.enteredCurrency)
-      console.log(state.secondCurrency)
-    }
   }
 })

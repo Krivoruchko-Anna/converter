@@ -1,41 +1,51 @@
 <template>
   <form class="form">
     <div class="form-group">
-      <input v-model="enteredCurrency" type="email" class="input-currency form-control form-control-sm" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="0">
+      <label for="entered">Amount</label>
+      <input v-model="entered" @change="enterSum(entered)" type="email" id="entered" class="input-currency form-control form-control-sm" aria-describedby="emailHelp">
     </div>
 
-    <div class="select-wrapper">
-      <select v-model="firstCurrency" class="custom-select custom-select-sm">
-        <option selected>Choose the currency</option>
-        <option v-for="(currency, i) in listOfCurrencies" :value="currency" :key="i" selected>{{ currency }}</option>
-      </select>
+    <div class="form__wrapper">
+      <div class="form__select-wrapper">
+        <label for="selectedFirst">From</label>
+        <select v-model="selectedFirst" @change="enterFirstCurrency(selectedFirst)" id="selectedFirst" class="custom-select custom-select-sm">
+          <option v-for="(currency, i) in listOfCurrencies" :value="currency" :key="i" selected>{{ currency }}</option>
+        </select>
+      </div>
 
-      <div class="equals">=</div>
+      <div class="equals"> = </div>
 
-      <select v-model="secondCurrency" class="custom-select custom-select-sm">
-        <option selected>Choose the currency</option>
-        <option v-for="(currency, i) in listOfCurrencies" :value="currency" :key="i" selected>{{ currency }}</option>
-      </select>
+      <div class="form__select-wrapper">
+        <label for="selectedSecond">To</label>
+        <select v-model="selectedSecond" @change="enterSecondCurrency(selectedSecond)" id="selectedSecond" class="custom-select custom-select-sm">
+          <option v-for="(currency, i) in listOfCurrencies" :value="currency" :key="i" selected>{{ currency }}</option>
+        </select>
+      </div>
     </div>
 
-    <button type="submit" @click.prevent="testListItems" class="btn btn-primary btn-sm">Submit</button>
+    <button type="submit" @click.prevent="showResults" class="btn btn-primary btn-sm">Submit</button>
 
   </form>
 </template>
 
 <script>
-import { mapActions, mapGetters } from 'vuex'
+import { mapActions, mapGetters, mapMutations } from 'vuex'
 
 export default {
   name: 'HelloWorld',
+  data() {
+    return {
+      entered: '',
+      selectedFirst: '',
+      selectedSecond: ''
+    }
+  },
   computed: {
-    ...mapGetters(['listOfCurrencies', 'enteredCurrency', 'firstCurrency', 'secondCurrency']),
+    ...mapGetters(['listOfCurrencies']),
   },
   methods: {
-    ...mapActions(['showOptions', 'fetchCurrencies']),
-    testListItems() {
-      console.log(this.listOfCurrencies);
-    }
+    ...mapActions(['fetchCurrencies']),
+    ...mapMutations(['enterSum', 'enterFirstCurrency', 'enterSecondCurrency', 'showResults'])
   },
   mounted() {
     this.$store.dispatch('fetchCurrencies');
@@ -49,11 +59,14 @@ export default {
     max-width: 800px;
     display: flex;
     justify-content: space-between;
-  }
 
-  .select-wrapper {
-    display: flex;
-    max-width: 340px;
+    &__wrapper {
+      display: flex;
+    }
+
+    &__select-wrapper {
+      width: 110px;
+    }
   }
 
   .input-currency {
@@ -61,15 +74,17 @@ export default {
   }
 
   .form-group {
-    width: calc(100% - 450px);
+    width: calc(100% - 400px);
   }
 
   .btn {
     height: 30px;
+    width: 90px;
+    margin-top: 30px;
   }
 
   .equals {
-    margin: 0 10px;
+    margin: 30px 15px 0 15px;
     line-height: 2;
   }
 
