@@ -3,7 +3,7 @@
 <!--    <img alt="Vue logo" src="../assets/logo.png">-->
     <Form/>
     <div v-if="showOutcome" class="result">
-        {{ enteredSum }} {{ firstCurrency }} &nbsp; = &nbsp; ... {{ secondCurrency }}
+        {{ enteredSum }} {{ firstCurrency }} &nbsp; = &nbsp; {{ (convertedCurrency * enteredSum).toFixed(2) }} {{ secondCurrency }}
     </div>
   </div>
 </template>
@@ -18,7 +18,7 @@ export default {
       Form
   },
     computed: {
-      ...mapGetters(['enteredSum', 'firstCurrency', 'secondCurrency', 'showOutcome'])
+      ...mapGetters(['enteredSum', 'firstCurrency', 'secondCurrency', 'showOutcome', 'convertedCurrency'])
     }
  }
 </script>

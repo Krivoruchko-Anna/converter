@@ -24,8 +24,9 @@
   margin: 20px auto 10px auto;
   display: flex;
   justify-content: space-around;
-  padding: 30px;
+  padding: 20px;
   border: 1px solid #ced4da;
+  border-radius: 0.25rem;
 
   a {
     font-weight: bold;

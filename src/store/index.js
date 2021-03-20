@@ -1,5 +1,6 @@
 import { createStore } from 'vuex';
 import { fetchData } from "../requests";
+import { fetchCurrency } from "../requests";
 
 export default createStore({
   state: {
@@ -7,6 +8,7 @@ export default createStore({
     enteredSum: null,
     firstCurrency: null,
     secondCurrency: null,
+    convertedCurrency: null,
     showOutcome: false
   },
   getters: {
@@ -21,6 +23,9 @@ export default createStore({
     },
     secondCurrency(state) {
       return state.secondCurrency;
+    },
+    convertedCurrency(state) {
+      return state.convertedCurrency;
     },
     showOutcome(state) {
       return state.showOutcome;
@@ -52,5 +57,9 @@ export default createStore({
     async fetchCurrencies({state}) {
       state.listOfCurrencies = await fetchData();
     },
+    async fetchConvertedCurrency({commit, state}) {
+      state.convertedCurrency = await fetchCurrency(state.firstCurrency, state.secondCurrency);
+      commit('showResults');
+    }
   }
 })

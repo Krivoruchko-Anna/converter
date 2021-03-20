@@ -2,7 +2,7 @@
   <form class="form">
     <div class="form-group">
       <label for="entered">Amount</label>
-      <input v-model="entered" @change="enterSum(entered)" type="email" id="entered" class="input-currency form-control form-control-sm" aria-describedby="emailHelp">
+      <input v-model="entered" @change="enterSum(entered)" type="email" id="entered" class="form__input-currency form-control form-control-sm" aria-describedby="emailHelp">
     </div>
 
     <div class="form__wrapper">
@@ -13,7 +13,7 @@
         </select>
       </div>
 
-      <div class="equals"> = </div>
+      <div class="form__equals"> = </div>
 
       <div class="form__select-wrapper">
         <label for="selectedSecond">To</label>
@@ -23,7 +23,7 @@
       </div>
     </div>
 
-    <button type="submit" @click.prevent="showResults" class="btn btn-primary btn-sm">Submit</button>
+    <button type="submit" @click.prevent="fetchConvertedCurrency()" class="btn btn-primary btn-sm">Submit</button>
 
   </form>
 </template>
@@ -44,7 +44,7 @@ export default {
     ...mapGetters(['listOfCurrencies']),
   },
   methods: {
-    ...mapActions(['fetchCurrencies']),
+    ...mapActions(['fetchCurrencies', 'fetchConvertedCurrency']),
     ...mapMutations(['enterSum', 'enterFirstCurrency', 'enterSecondCurrency', 'showResults'])
   },
   mounted() {
@@ -67,10 +67,15 @@ export default {
     &__select-wrapper {
       width: 110px;
     }
-  }
 
-  .input-currency {
-    text-align: center;
+    &__equals {
+      margin: 30px 15px 0 15px;
+      line-height: 2;
+    }
+
+    &__input-currency {
+      text-align: center;
+    }
   }
 
   .form-group {
@@ -81,11 +86,6 @@ export default {
     height: 30px;
     width: 90px;
     margin-top: 30px;
-  }
-
-  .equals {
-    margin: 30px 15px 0 15px;
-    line-height: 2;
   }
 
 </style>
