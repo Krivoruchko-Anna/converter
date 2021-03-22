@@ -11,14 +11,19 @@
       </th>
     </tr>
     <tr>
+
       <td>
         <ul class="p-0">
           <li class="table__li" v-for="(currency, i) in currencies" :key="i"> {{ currency }}</li>
         </ul>
       </td>
+
       <td>
-        <li class="table__li" v-for="(res, i) in curObj" :key="i"> {{ res }}</li>
+        <ul v-if="currencyObj.lenght">
+          <li class="table__li" v-for="(res, i) in currencyObj" :key="i"> {{ res.toFixed(2) }}</li>
+        </ul>
       </td>
+
     </tr>
     </thead>
   </table>
@@ -37,7 +42,7 @@
       }
     },
     computed: {
-      ...mapGetters(['listOfCurrencies', 'currencies', 'curObj'])
+      ...mapGetters(['listOfCurrencies', 'currencies', 'currencyObj'])
     },
     methods: {
       ...mapActions(['fetchCurrencies', 'fetchCurrencyList']),
@@ -50,6 +55,18 @@
 </script>
 
 <style scoped lang="scss">
+  ul {
+    margin-bottom: 0;
+  }
+
+  td {
+    padding: 0 20px;
+  }
+
+  th {
+    padding: 10px;
+  }
+
   .table {
     width: 100%;
     margin-top: 20px;
@@ -63,7 +80,13 @@
 
     &__li {
       list-style-type: none;
-      margin: 7px auto;
+      margin: 10px auto;
+      border-bottom: 1px solid #dee2e6;
+      padding-bottom: 7px;
+      &:last-child {
+        border-bottom: none;
+        padding-bottom: 0;
+      }
     }
   }
 

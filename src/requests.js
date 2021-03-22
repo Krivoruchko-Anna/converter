@@ -1,7 +1,5 @@
 import axios from "axios";
 const apiKey = '33ac2d9ba98418cfdf69';
-// const apiKey = 'b0c751611ae31353b2a8';
-// const apiKey = '4e828fd2198c0ade0167';
 
 export const fetchData = async () => {
     try {
@@ -42,21 +40,14 @@ export const fetchCurrencyObject = async (firstCurrency) => {
             const promise4 = axios.get(`https://free.currconv.com/api/v7/convert?apiKey=${apiKey}&q=${firstCurrency}_GBP&compact=y`);
             const promise5 = axios.get(`https://free.currconv.com/api/v7/convert?apiKey=${apiKey}&q=${firstCurrency}_JPY&compact=y`);
 
-            return Promise.all([promise1, promise2, promise3, promise4, promise5]).then(function (values) {
+            return Promise.all([promise1, promise2, promise3, promise4, promise5])
+                .then(function (values) {
                 let all = [];
                 values.map(item => {
                     all.push(item.data);
                 })
                 return all;
             });
-
-            // return Promise.all([promise1, promise2]).then(function (values) {
-            //     let all = [];
-            //     values.map(item => {
-            //         all.push(item.data);
-            //     })
-            //     return all;
-            // });
         }
     }
     catch (e) {
