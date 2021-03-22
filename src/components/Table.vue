@@ -50,8 +50,8 @@
     },
     mounted() {
       this.$store.dispatch('fetchCurrencies');
-    }
-}
+    },
+  }
 </script>
 
 <style scoped lang="scss">
