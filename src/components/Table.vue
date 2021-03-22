@@ -19,7 +19,7 @@
       </td>
 
       <td>
-        <ul v-if="currencyObj.lenght">
+        <ul>
           <li class="table__li" v-for="(res, i) in currencyObj" :key="i"> {{ res.toFixed(2) }}</li>
         </ul>
       </td>
