@@ -4,7 +4,8 @@
     <tr>
       <th class="table__header" label="Currency"><span>Currency</span></th>
       <th class="table__header" label="Selected currency">
-        <select name="" id="" class="custom-select custom-select-sm">
+        <span>1 &nbsp;</span>
+        <select v-model="selectedCurrency" @change="selectMainCurrency(selectedCurrency)" :name="selectedCurrency" :id="selectedCurrency" class="custom-select custom-select-sm">
           <option v-for="(currency, i) in listOfCurrencies" :value="currency" :key="i" selected>{{ currency }}</option>
         </select>
       </th>
@@ -12,46 +13,62 @@
     <tr>
       <td>
         <ul class="p-0">
-          <li class="table__li" v-for="(currency, i) in listOfCurrencies" :key="i"> {{ currency }}</li>
+          <li class="table__li" v-for="(currency, i) in currencies" :key="i"> {{ currency }}</li>
         </ul>
       </td>
       <td>
-        <li class="table__li" v-for="(currency, i) in listOfCurrencies" :key="i"> {{ i }}</li>
+        <li class="table__li" v-for="(res, i) in convertedListOfCurrencies" :key="i"> {{ res }}</li>
       </td>
     </tr>
     </thead>
   </table>
+
+<!--  <button @click="fetchConvertedListOfCurrencies(selectedCurrency)" class="btn btn-primary btn-sm">Show</button>-->
+  <button @click="fetchCurrencyObject(selectedCurrency)" class="btn btn-primary btn-sm">Show</button>
+
 </template>
 
 <script>
-  import { mapGetters, mapActions } from 'vuex';
+  import { mapGetters, mapActions, mapMutations } from 'vuex';
 
   export default {
+    data() {
+      return {
+        selectedCurrency: null
+      }
+    },
     computed: {
-      ...mapGetters(['listOfCurrencies'])
+      ...mapGetters(['listOfCurrencies', 'currencies', 'convertedListOfCurrencies'])
     },
     methods: {
-      ...mapActions(['fetchCurrencies'])
+      ...mapActions(['fetchCurrencies', 'fetchConvertedListOfCurrencies', 'fetchCurrencyObject']),
+      ...mapMutations(['selectMainCurrency'])
     },
     mounted() {
       this.$store.dispatch('fetchCurrencies');
     }
-
 }
 </script>
 
-<style lang="scss">
+<style scoped lang="scss">
   .table {
     width: 100%;
     margin-top: 20px;
+    border: 1px solid #ced4da;
     color: #758395;
 
     &__header {
       width: 50%;
+      font-weight: 300;
     }
 
     &__li {
       list-style-type: none;
+      margin: 7px auto;
     }
+  }
+
+  .custom-select {
+    width: 30%;
   }
 </style>

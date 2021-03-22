@@ -1,14 +1,17 @@
 import { createStore } from 'vuex';
-import { fetchData } from "../requests";
-import { fetchCurrency } from "../requests";
+import { fetchData, fetchCurrency, fetchCurrencyObject } from "../requests";
 
 export default createStore({
   state: {
     listOfCurrencies: [],
+    convertedListOfCurrencies: [],
+    // convertedListOfCurrencies: [{'AUD': null}, {'USD': null}, {'EUR': null}, {'GBP': null}, {'JPY': null}],
+    currencies: ['AUD', 'USD', 'EUR', 'GBP', 'JPY'],
     enteredSum: null,
     firstCurrency: null,
     secondCurrency: null,
     convertedCurrency: null,
+    selectedCurrency: null,
     showOutcome: false
   },
   getters: {
@@ -29,6 +32,15 @@ export default createStore({
     },
     showOutcome(state) {
       return state.showOutcome;
+    },
+    convertedListOfCurrencies(state) {
+      return state.convertedListOfCurrencies;
+    },
+    selectedCurrency(state) {
+      return state.selectedCurrency;
+    },
+    currencies(state) {
+      return state.currencies;
     }
   },
   mutations: {
@@ -51,6 +63,9 @@ export default createStore({
       if (state.enteredSum && state.firstCurrency && state.secondCurrency) {
         state.showOutcome = true;
       }
+    },
+    selectMainCurrency(state, currency) {
+      state.selectedCurrency = currency;
     }
   },
   actions: {
@@ -60,6 +75,16 @@ export default createStore({
     async fetchConvertedCurrency({commit, state}) {
       state.convertedCurrency = await fetchCurrency(state.firstCurrency, state.secondCurrency);
       commit('showResults');
+    },
+    async fetchConvertedListOfCurrencies({state}, selectedCurrency) {
+      state.convertedListOfCurrencies = [];
+      state.currencies.map(async function(item) {
+        state.convertedListOfCurrencies.push(await fetchCurrency(selectedCurrency, item));
+        console.log(selectedCurrency, state.convertedListOfCurrencies);
+      });
+    },
+    async fetchCurrencyObject({state}, ) {
+      await fetchCurrencyObject(state.selectedCurrency, 'USD');
     }
   }
 })
