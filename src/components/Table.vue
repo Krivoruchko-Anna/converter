@@ -17,14 +17,13 @@
         </ul>
       </td>
       <td>
-        <li class="table__li" v-for="(res, i) in convertedListOfCurrencies" :key="i"> {{ res }}</li>
+        <li class="table__li" v-for="(res, i) in curObj" :key="i"> {{ res }}</li>
       </td>
     </tr>
     </thead>
   </table>
 
-<!--  <button @click="fetchConvertedListOfCurrencies(selectedCurrency)" class="btn btn-primary btn-sm">Show</button>-->
-  <button @click="fetchCurrencyObject(selectedCurrency)" class="btn btn-primary btn-sm">Show</button>
+  <button @click="fetchCurrencyList()" class="btn btn-primary btn-sm">Show exchange rates</button>
 
 </template>
 
@@ -38,10 +37,10 @@
       }
     },
     computed: {
-      ...mapGetters(['listOfCurrencies', 'currencies', 'convertedListOfCurrencies'])
+      ...mapGetters(['listOfCurrencies', 'currencies', 'curObj'])
     },
     methods: {
-      ...mapActions(['fetchCurrencies', 'fetchConvertedListOfCurrencies', 'fetchCurrencyObject']),
+      ...mapActions(['fetchCurrencies', 'fetchCurrencyList']),
       ...mapMutations(['selectMainCurrency'])
     },
     mounted() {

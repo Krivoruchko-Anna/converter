@@ -4,9 +4,9 @@ import { fetchData, fetchCurrency, fetchCurrencyObject } from "../requests";
 export default createStore({
   state: {
     listOfCurrencies: [],
-    convertedListOfCurrencies: [],
-    // convertedListOfCurrencies: [{'AUD': null}, {'USD': null}, {'EUR': null}, {'GBP': null}, {'JPY': null}],
+    // convertedListOfCurrencies: [],
     currencies: ['AUD', 'USD', 'EUR', 'GBP', 'JPY'],
+    curObj: [],
     enteredSum: null,
     firstCurrency: null,
     secondCurrency: null,
@@ -33,14 +33,17 @@ export default createStore({
     showOutcome(state) {
       return state.showOutcome;
     },
-    convertedListOfCurrencies(state) {
-      return state.convertedListOfCurrencies;
-    },
+    // convertedListOfCurrencies(state) {
+    //   return state.convertedListOfCurrencies;
+    // },
     selectedCurrency(state) {
       return state.selectedCurrency;
     },
     currencies(state) {
       return state.currencies;
+    },
+    curObj(state) {
+      return state.curObj;
     }
   },
   mutations: {
@@ -76,15 +79,37 @@ export default createStore({
       state.convertedCurrency = await fetchCurrency(state.firstCurrency, state.secondCurrency);
       commit('showResults');
     },
-    async fetchConvertedListOfCurrencies({state}, selectedCurrency) {
-      state.convertedListOfCurrencies = [];
-      state.currencies.map(async function(item) {
-        state.convertedListOfCurrencies.push(await fetchCurrency(selectedCurrency, item));
-        console.log(selectedCurrency, state.convertedListOfCurrencies);
+    // async fetchConvertedListOfCurrencies({state}, selectedCurrency) {
+    //   state.convertedListOfCurrencies = [];
+    //   state.currencies.map(async function(item) {
+    //     state.convertedListOfCurrencies.push(await fetchCurrency(selectedCurrency, item));
+    //   });
+    // },
+    async fetchCurrencyList({state}) {
+      const tempRes = await fetchCurrencyObject(state.selectedCurrency);
+      tempRes.map(item => {
+        state.curObj.push(Object.values(item)[0].val)
       });
     },
-    async fetchCurrencyObject({state}, ) {
-      await fetchCurrencyObject(state.selectedCurrency, 'USD');
-    }
   }
 })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
