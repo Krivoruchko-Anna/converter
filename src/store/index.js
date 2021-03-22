@@ -6,6 +6,7 @@ export default createStore({
     listOfCurrencies: [],
     // convertedListOfCurrencies: [],
     currencies: ['AUD', 'USD', 'EUR', 'GBP', 'JPY'],
+    // currencies: ['AUD', 'USD'],
     curObj: [],
     enteredSum: null,
     firstCurrency: null,

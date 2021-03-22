@@ -38,7 +38,7 @@ export const fetchCurrencyObject = async (firstCurrency) => {
         if (firstCurrency) {
             const promise1 = axios.get(`https://free.currconv.com/api/v7/convert?apiKey=${apiKey}&q=${firstCurrency}_AUD&compact=y`);
             const promise2 = axios.get(`https://free.currconv.com/api/v7/convert?apiKey=${apiKey}&q=${firstCurrency}_USD&compact=y`);
-            const promise3 = axios.get(`https://free.currconv.com/api/v7/convert?apiKey=${apiKey}&q=${firstCurrency}_EUR &compact=y`);
+            const promise3 = axios.get(`https://free.currconv.com/api/v7/convert?apiKey=${apiKey}&q=${firstCurrency}_EUR&compact=y`);
             const promise4 = axios.get(`https://free.currconv.com/api/v7/convert?apiKey=${apiKey}&q=${firstCurrency}_GBP&compact=y`);
             const promise5 = axios.get(`https://free.currconv.com/api/v7/convert?apiKey=${apiKey}&q=${firstCurrency}_JPY&compact=y`);
 
@@ -49,6 +49,14 @@ export const fetchCurrencyObject = async (firstCurrency) => {
                 })
                 return all;
             });
+
+            // return Promise.all([promise1, promise2]).then(function (values) {
+            //     let all = [];
+            //     values.map(item => {
+            //         all.push(item.data);
+            //     })
+            //     return all;
+            // });
         }
     }
     catch (e) {
