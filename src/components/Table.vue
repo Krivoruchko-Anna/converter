@@ -4,7 +4,7 @@
     <tr>
       <th class="table__header" label="Currency"><span>Currency</span></th>
       <th class="table__header" label="Selected currency">
-        <span>1 &nbsp;</span>
+<!--        <span>1 &nbsp;</span>-->
         <select v-model="selectedCurrency" @change="selectMainCurrency(selectedCurrency)" :name="selectedCurrency" :id="selectedCurrency" class="custom-select custom-select-sm">
           <option v-for="(currency, i) in listOfCurrencies" :value="currency" :key="i" selected>{{ currency }}</option>
         </select>
@@ -14,13 +14,13 @@
 
       <td>
         <ul class="p-0">
-          <li class="table__li" v-for="(currency, i) in currencies" :key="i"> {{ currency }}</li>
+          <li class="table__li" v-for="(currency, i) in currencies" :key="i"> 1 {{ currency }}</li>
         </ul>
       </td>
 
       <td>
         <ul>
-          <li class="table__li" v-for="(res, i) in currencyObj" :key="i"> {{ res.toFixed(2) }}</li>
+          <li class="table__li" v-for="(res, i) in currencyObj" :key="i"> {{ res.toFixed(2) }} {{ selectedCurrency }}</li>
         </ul>
       </td>
 
@@ -28,7 +28,7 @@
     </thead>
   </table>
 
-  <button @click="fetchCurrencyList()" class="btn btn-primary btn-sm">Show exchange rates</button>
+  <button @click="fetchCurrencyList()" class="btn btn-primary btn-sm mt-2">Show exchange rates</button>
 
 </template>
 
@@ -38,7 +38,7 @@
   export default {
     data() {
       return {
-        selectedCurrency: null
+        selectedCurrency: 'AUD'
       }
     },
     computed: {
@@ -50,6 +50,7 @@
     },
     mounted() {
       this.$store.dispatch('fetchCurrencies');
+      this.$store.dispatch('fetchCurrencyList');
     },
   }
 </script>
@@ -57,6 +58,7 @@
 <style scoped lang="scss">
   ul {
     margin-bottom: 0;
+    padding: 0;
   }
 
   td {

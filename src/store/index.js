@@ -10,7 +10,7 @@ export default createStore({
     firstCurrency: null,
     secondCurrency: null,
     convertedCurrency: null,
-    selectedCurrency: null,
+    selectedCurrency: 'AUD',
     showOutcome: false
   },
   getters: {
