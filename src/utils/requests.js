@@ -24,7 +24,6 @@ export const fetchCurrency = async (firstCurrency, secondCurrency = 0) => {
     try {
         if (firstCurrency && secondCurrency) {
             const response = await axiosInstance.get(`/convert?q=${firstCurrency}_${secondCurrency}&compact=y`);
-            // const response = await axiosInstance.get(`/convert&q=${firstCurrency}_${secondCurrency}&compact=y`);
             const convertedResult = response.data[`${firstCurrency}_${secondCurrency}`];
             const result = convertedResult.val;
 
