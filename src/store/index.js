@@ -1,5 +1,5 @@
 import { createStore } from 'vuex';
-import { fetchData, fetchCurrency, fetchCurrencyObject } from "../utils/requests";
+import { fetchData, fetchCurrency } from "../utils/requests";
 import { MAJOR_CURRENCIES } from "../utils/consts";
 
 export default createStore({
