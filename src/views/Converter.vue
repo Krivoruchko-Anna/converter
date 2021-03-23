@@ -3,7 +3,9 @@
 <!--    <img alt="Vue logo" src="../assets/logo.png">-->
     <Form/>
     <div v-if="showOutcome" class="result">
-        {{ enteredSum }} {{ firstCurrency }} &nbsp; = &nbsp; {{ (convertedCurrency * enteredSum).toFixed(2) }} {{ secondCurrency }}
+        <span class="result__span">
+            <b>{{ enteredSum }}</b> {{ firstCurrency }} &nbsp; = &nbsp; <b>{{ (convertedCurrency * enteredSum).toFixed(2) }}</b> {{ secondCurrency }}
+        </span>
     </div>
   </div>
 </template>
@@ -23,10 +25,16 @@ export default {
  }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .result {
-    font-size: 24px;
-    margin-top: 30px;
+    font-size: 22px;
+    margin-top: 40px;
     color: rgb(46, 60, 87);
+
+    &__span {
+        padding: 15px 30px;
+        border-radius: 4px;
+        box-shadow: rgb(0 17 51 / 15%) 0 3px 15px;
     }
+}
 </style>

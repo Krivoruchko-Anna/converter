@@ -1,5 +1,5 @@
 <template>
-  <h1 class="header">Currency Converter</h1>
+  <h1 class="header">Currency Exchange Rates</h1>
 
   <div class="nav">
   <router-link to="/">Currency converter</router-link>
@@ -14,8 +14,8 @@
 
 <style lang="scss">
   body {
-    /*background-color: rgb(10 20 110);*/
-    background: linear-gradient(rgb(10 20 110) 70%, white 30%);
+    /*background: linear-gradient(rgb(10 20 110) 70%, white 30%);*/
+    background: linear-gradient(#0a146e, #707ce7 70%, white 30%);
     background-repeat: no-repeat;
   }
 
@@ -35,6 +35,7 @@
 .header {
   color: white;
   font-size: 28px;
+  font-weight: bold;
 }
 
 .nav {
