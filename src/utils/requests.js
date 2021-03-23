@@ -9,7 +9,7 @@ const axiosInstance = axios.create({
 
 export const fetchData = async () => {
     try {
-        const response = await axiosInstance.get(`/currencies?apiKey=`);
+        const response = await axiosInstance.get(`/currencies`);
         const results = response.data.results;
         const list = Object.keys(results);
 
@@ -23,7 +23,8 @@ export const fetchData = async () => {
 export const fetchCurrency = async (firstCurrency, secondCurrency = 0) => {
     try {
         if (firstCurrency && secondCurrency) {
-            const response = await axiosInstance.get(`/convert?apiKey=&q=${firstCurrency}_${secondCurrency}&compact=y`);
+            const response = await axiosInstance.get(`/convert?q=${firstCurrency}_${secondCurrency}&compact=y`);
+            // const response = await axiosInstance.get(`/convert&q=${firstCurrency}_${secondCurrency}&compact=y`);
             const convertedResult = response.data[`${firstCurrency}_${secondCurrency}`];
             const result = convertedResult.val;
 

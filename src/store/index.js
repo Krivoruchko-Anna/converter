@@ -17,7 +17,7 @@ export default createStore({
   },
   getters: {
     listOfCurrencies(state) {
-       return state.listOfCurrencies;
+       return state.listOfCurrencies.sort();
     },
     currencies(state) {
       return state.currencies;
@@ -72,7 +72,7 @@ export default createStore({
       state.selectedCurrency = currency;
       state.currencyObj = [];
       state.isSelectedCurrency = false;
-    },
+    }
   },
   actions: {
     async fetchCurrencies({state}) {
@@ -88,7 +88,7 @@ export default createStore({
       state.isSelectedCurrency = true;
 
       const arrList = [];
-      await MAJOR_CURRENCIES.map(item => {
+        MAJOR_CURRENCIES.map(item => {
         const tempRes = fetchCurrency(item, state.selectedCurrency);
         arrList.push(tempRes);
       });
