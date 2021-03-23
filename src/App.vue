@@ -1,9 +1,9 @@
 <template>
   <h1 class="header">Currency Exchange Rates</h1>
-
   <div class="nav">
-  <router-link to="/">Currency converter</router-link>
-  <router-link to="/currencies">Exchange rates</router-link>
+    <router-link class="nav__link" to="/">Currency converter</router-link>
+    <img class="nav__icon" src="./assets/exchange.svg" alt="exchange">
+    <router-link class="nav__link" to="/currencies">Exchange rates</router-link>
 </div>
   <router-view/>
 </template>
@@ -14,7 +14,6 @@
 
 <style lang="scss">
   body {
-    /*background: linear-gradient(rgb(10 20 110) 70%, white 30%);*/
     background: linear-gradient(#0a146e, #707ce7 70%, white 30%);
     background-repeat: no-repeat;
   }
@@ -49,8 +48,14 @@
   background-color: white;
   box-shadow: rgb(35 55 80 / 30%) 0 6px 12px;
 
+  &__icon {
+    width: 30px;
+    height: 30px;
+  }
+
   a {
     font-weight: bold;
+    line-height: 30px;
     color: #758395;
     text-decoration: none;
     transition: .4s all;

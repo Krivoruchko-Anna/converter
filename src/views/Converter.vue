@@ -29,7 +29,7 @@ export default {
 .result {
     font-size: 22px;
     margin-top: 40px;
-    color: rgb(46, 60, 87);
+    color: #6a7179;
 
     &__span {
         padding: 15px 30px;
