@@ -4,7 +4,6 @@
     <tr>
       <th class="table__header" label="Currency"><span>Currency</span></th>
       <th class="table__header" label="Selected currency">
-<!--        <span>1 &nbsp;</span>-->
         <select v-model="selectedCurrency" @change="selectMainCurrency(selectedCurrency)" :name="selectedCurrency" :id="selectedCurrency" class="custom-select custom-select-sm">
           <option v-for="(currency, i) in listOfCurrencies" :value="currency" :key="i" selected>{{ currency }}</option>
         </select>

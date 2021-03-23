@@ -82,13 +82,23 @@ export default createStore({
       state.convertedCurrency = await fetchCurrency(state.firstCurrency, state.secondCurrency);
       commit('showResults');
     },
+
     async fetchCurrencyList({state}) {
       state.currencyObj = [];
       state.isSelectedCurrency = true;
-      const tempRes = await fetchCurrencyObject(state.selectedCurrency);
-      tempRes.map(item => {
-        state.currencyObj.push(Object.values(item)[0].val)
+
+      const arrList = [];
+      await MAJOR_CURRENCIES.map(item => {
+        const tempRes = fetchCurrency(item, state.selectedCurrency);
+        arrList.push(tempRes);
       });
+
+      return Promise.all(arrList)
+        .then(function (values) {
+          values.map(item => {
+            state.currencyObj.push(item);
+          });
+        });
     },
   }
 })
