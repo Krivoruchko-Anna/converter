@@ -19,10 +19,7 @@ export default createStore({
   getters: {
     listOfCurrencies(state) {
        const sortedArr = state.listOfCurrencies.sort().filter(item => {
-         // MAJOR_CURRENCIES.map(cur => {
-         //   return item !== cur;
-         // });
-         return item !== 'AUD' && item !== 'USD' && item !== 'EUR' && item !== 'GBP' && item !== 'JPY';
+          return !MAJOR_CURRENCIES.includes(item);
        });
        return MAJOR_CURRENCIES.concat(sortedArr);
     },
