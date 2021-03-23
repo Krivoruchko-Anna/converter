@@ -1,10 +1,11 @@
 import { createStore } from 'vuex';
-import { fetchData, fetchCurrency, fetchCurrencyObject } from "../requests";
+import { fetchData, fetchCurrency, fetchCurrencyObject } from "../utils/requests";
+import { MAJOR_CURRENCIES } from "../utils/consts";
 
 export default createStore({
   state: {
     listOfCurrencies: [],
-    currencies: ['AUD', 'USD', 'EUR', 'GBP', 'JPY'],
+    currencies: MAJOR_CURRENCIES,
     currencyObj: [],
     enteredSum: null,
     firstCurrency: null,
