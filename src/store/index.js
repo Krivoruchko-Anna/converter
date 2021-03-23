@@ -11,11 +11,18 @@ export default createStore({
     secondCurrency: null,
     convertedCurrency: null,
     selectedCurrency: 'AUD',
-    showOutcome: false
+    showOutcome: false,
+    isSelectedCurrency: true
   },
   getters: {
     listOfCurrencies(state) {
        return state.listOfCurrencies;
+    },
+    currencies(state) {
+      return state.currencies;
+    },
+    currencyObj(state) {
+      return state.currencyObj;
     },
     enteredSum(state) {
       return state.enteredSum;
@@ -29,17 +36,14 @@ export default createStore({
     convertedCurrency(state) {
       return state.convertedCurrency;
     },
-    showOutcome(state) {
-      return state.showOutcome;
-    },
     selectedCurrency(state) {
       return state.selectedCurrency;
     },
-    currencies(state) {
-      return state.currencies;
+    showOutcome(state) {
+      return state.showOutcome;
     },
-    currencyObj(state) {
-      return state.currencyObj;
+    isSelectedCurrency(state) {
+      return state.isSelectedCurrency;
     }
   },
   mutations: {
@@ -65,7 +69,9 @@ export default createStore({
     },
     selectMainCurrency(state, currency) {
       state.selectedCurrency = currency;
-    }
+      state.currencyObj = [];
+      state.isSelectedCurrency = false;
+    },
   },
   actions: {
     async fetchCurrencies({state}) {
@@ -77,6 +83,7 @@ export default createStore({
     },
     async fetchCurrencyList({state}) {
       state.currencyObj = [];
+      state.isSelectedCurrency = true;
       const tempRes = await fetchCurrencyObject(state.selectedCurrency);
       tempRes.map(item => {
         state.currencyObj.push(Object.values(item)[0].val)

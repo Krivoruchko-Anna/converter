@@ -20,7 +20,7 @@
 
       <td>
         <ul>
-          <li class="table__li" v-for="(res, i) in currencyObj" :key="i"> {{ res.toFixed(2) }} {{ selectedCurrency }}</li>
+          <li class="table__li" v-for="(res, i) in currencyObj" :key="i"> {{ res.toFixed(2) }} {{ isSelectedCurrency ? selectedCurrency : null }}</li>
         </ul>
       </td>
 
@@ -42,7 +42,7 @@
       }
     },
     computed: {
-      ...mapGetters(['listOfCurrencies', 'currencies', 'currencyObj'])
+      ...mapGetters(['listOfCurrencies', 'currencies', 'currencyObj', 'isSelectedCurrency'])
     },
     methods: {
       ...mapActions(['fetchCurrencies', 'fetchCurrencyList']),
