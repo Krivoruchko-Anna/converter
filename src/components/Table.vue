@@ -27,7 +27,7 @@
     </thead>
   </table>
 
-  <button @click="fetchCurrencyList()" class="btn btn-primary btn-sm mt-2">Show exchange rates</button>
+  <button @click="fetchCurrencyList()" class="btn btn-primary btn-sm mt-2 p-2">Show exchange rates</button>
 
 </template>
 
@@ -66,13 +66,17 @@
 
   th {
     padding: 10px;
+    border: none;
   }
 
   .table {
     width: 100%;
     margin-top: 20px;
-    border: 1px solid #ced4da;
+    border-radius: 4px;
     color: #758395;
+    background-color: white;
+    box-shadow: rgb(35 55 80 / 30%) 0 6px 12px;
+
 
     &__header {
       width: 50%;

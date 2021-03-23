@@ -59,6 +59,10 @@ export default {
     max-width: 800px;
     display: flex;
     justify-content: space-between;
+    padding: 30px;
+    border-radius: 4px;
+    background-color: white;
+    box-shadow: rgb(35 55 80 / 30%) 0 6px 12px;
 
     &__wrapper {
       display: flex;

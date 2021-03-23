@@ -26,7 +26,7 @@ export default {
 <style scoped>
 .result {
     font-size: 24px;
-    margin-top: 20px;
-    color: #4b5158;
-}
+    margin-top: 30px;
+    color: rgb(46, 60, 87);
+    }
 </style>
