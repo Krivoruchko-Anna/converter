@@ -2,13 +2,20 @@
   <h1 class="header">Currency Exchange Rates</h1>
   <div class="nav">
     <router-link class="nav__link" to="/">Currency converter</router-link>
-    <img class="nav__icon" src="./assets/exchange.svg" alt="exchange">
+    <img class="nav__icon" :class="{animated: isAnimated }" src="./assets/exchange.svg" alt="exchange">
     <router-link class="nav__link" to="/currencies">Exchange rates</router-link>
 </div>
   <router-view/>
 </template>
 
 <script>
+  import { mapGetters } from 'vuex';
+
+  export default {
+    computed: {
+      ...mapGetters(['isAnimated'])
+    }
+  }
 
 </script>
 
@@ -69,6 +76,21 @@
         color: #7eb4ed;
       }
     }
+  }
+}
+
+.animated {
+  animation: twinkle .5s ease-in-out infinite;
+}
+
+@keyframes twinkle {
+  50% {
+    opacity: 0.3;
+    transform: scale(0.4);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
   }
 }
 

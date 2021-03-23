@@ -13,7 +13,8 @@ export default createStore({
     convertedCurrency: null,
     selectedCurrency: 'AUD',
     showOutcome: false,
-    isSelectedCurrency: true
+    isSelectedCurrency: true,
+    isAnimated: false
   },
   getters: {
     listOfCurrencies(state) {
@@ -51,6 +52,9 @@ export default createStore({
     },
     isSelectedCurrency(state) {
       return state.isSelectedCurrency;
+    },
+    isAnimated(state) {
+      return state.isAnimated;
     }
   },
   mutations: {
@@ -72,6 +76,7 @@ export default createStore({
     showResults(state) {
       if (state.enteredSum && state.firstCurrency && state.secondCurrency) {
         state.showOutcome = true;
+        state.isAnimated = false;
       }
     },
     selectMainCurrency(state, currency) {
@@ -85,11 +90,13 @@ export default createStore({
       state.listOfCurrencies = await fetchData();
     },
     async fetchConvertedCurrency({commit, state}) {
+      state.isAnimated = true;
       state.convertedCurrency = await fetchCurrency(state.firstCurrency, state.secondCurrency);
       commit('showResults');
     },
 
     async fetchCurrencyList({state}) {
+      state.isAnimated = true;
       state.currencyObj = [];
       state.isSelectedCurrency = true;
 
@@ -97,13 +104,14 @@ export default createStore({
         MAJOR_CURRENCIES.map(item => {
         const tempRes = fetchCurrency(item, state.selectedCurrency);
         arrList.push(tempRes);
-      });
+        });
 
       return Promise.all(arrList)
         .then(function (values) {
           values.map(item => {
             state.currencyObj.push(item);
           });
+          state.isAnimated = false;
         });
     },
   }
