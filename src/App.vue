@@ -2,7 +2,7 @@
   <h1 class="header">Currency Exchange Rates</h1>
   <div class="nav">
     <router-link class="nav__link" to="/">Currency converter</router-link>
-    <img class="nav__icon" :class="{animated: isAnimated }" src="./assets/exchange.svg" alt="exchange">
+    <img class="nav__icon" :class="{ animated: isAnimated }" src="./assets/exchange.svg" alt="exchange">
     <router-link class="nav__link" to="/currencies">Exchange rates</router-link>
 </div>
   <router-view/>

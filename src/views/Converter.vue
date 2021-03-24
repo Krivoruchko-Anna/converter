@@ -1,6 +1,5 @@
 <template>
   <div class="converter">
-<!--    <img alt="Vue logo" src="../assets/logo.png">-->
     <Form/>
     <div v-if="showOutcome" class="result">
         <span class="result__span">
