@@ -35,21 +35,25 @@
   import { mapGetters, mapActions, mapMutations } from 'vuex';
 
   export default {
-    data() {
-      return {
-        selectedCurrency: 'AUD'
+    computed: {
+      ...mapGetters(['listOfCurrencies', 'currencies', 'currencyObj', 'isSelectedCurrency']),
+      selectedCurrency: {
+        get() {
+          return this.$store.state.selectedCurrency;
+        },
+        set(value) {
+          this.$store.commit('updatesSelectedCurrency', value);
+        }
       }
     },
-    computed: {
-      ...mapGetters(['listOfCurrencies', 'currencies', 'currencyObj', 'isSelectedCurrency'])
-    },
     methods: {
-      ...mapActions(['fetchCurrencies', 'fetchCurrencyList']),
+      ...mapActions(['fetchCurrencies', 'fetchCurrencyList', 'fetchLocalCurrency']),
       ...mapMutations(['selectMainCurrency'])
     },
     mounted() {
       this.$store.dispatch('fetchCurrencies');
       this.$store.dispatch('fetchCurrencyList');
+      // this.$store.dispatch('fetchLocalCurrency');
     },
   }
 </script>

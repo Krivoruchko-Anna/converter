@@ -80,17 +80,20 @@
 }
 
 .animated {
-  animation: twinkle .5s ease-in-out infinite;
+  animation: twinkle .9s ease-out infinite;
 }
 
 @keyframes twinkle {
   50% {
+    transform: rotate(180deg);
+  }
+  70% {
     opacity: 0.3;
-    transform: scale(0.4);
+    transform: scale(0.7);
   }
   100% {
     opacity: 1;
-    transform: scale(1);
+    transform: scale(1) rotate(0);
   }
 }
 

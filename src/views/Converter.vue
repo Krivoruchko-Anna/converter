@@ -3,7 +3,8 @@
     <Form/>
     <div v-if="showOutcome" class="result">
         <span class="result__span">
-            <b>{{ enteredSum }}</b> {{ firstCurrency }} &nbsp; = &nbsp; <b>{{ (convertedCurrency * enteredSum).toFixed(2) }}</b> {{ secondCurrency }}
+            <b>{{ enteredSum }}</b> {{ firstCurrency }} &nbsp; = &nbsp;
+            <b>{{ (convertedCurrency * enteredSum).toFixed(2) }}</b> {{ secondCurrency }}
         </span>
     </div>
   </div>
