@@ -21,7 +21,7 @@
 
 <style lang="scss">
   body {
-    background: linear-gradient(#0a146e, #707ce7 70%, white 30%);
+    background: linear-gradient(#0a146e, #3946be 70%, white 30%);
     background-repeat: no-repeat;
   }
 
