@@ -53,8 +53,10 @@
     mounted() {
       this.$store.dispatch('fetchCurrencies');
       this.$store.dispatch('fetchCurrencyList');
-      // this.$store.dispatch('fetchLocalCurrency');
     },
+    beforeCreate() {
+      this.$store.dispatch('fetchLocalCurrency');
+    }
   }
 </script>
 
