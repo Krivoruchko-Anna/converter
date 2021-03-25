@@ -47,16 +47,13 @@
       }
     },
     methods: {
-      ...mapActions(['fetchCurrencies', 'fetchCurrencyList', 'fetchLocalCurrency']),
+      ...mapActions(['fetchCurrencies', 'fetchCurrencyList']),
       ...mapMutations(['selectMainCurrency'])
     },
     mounted() {
       this.$store.dispatch('fetchCurrencies');
       this.$store.dispatch('fetchCurrencyList');
     },
-    beforeCreate() {
-      this.$store.dispatch('fetchLocalCurrency');
-    }
   }
 </script>
 

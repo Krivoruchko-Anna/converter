@@ -117,11 +117,6 @@ export default createStore({
           state.isAnimated = false;
         });
     },
-
-    async fetchLocalCurrency({state}) {
-      axios.get(`http://ip-api.com/json?fields=8413185`)
-        .then(response => state.selectedCurrency = response.data.currency);
-    }
   }
 })
 
