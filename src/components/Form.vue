@@ -2,7 +2,7 @@
   <form  @submit.prevent="fetchConvertedCurrency()" class="form">
     <div class="form-group">
       <label for="entered">Amount</label>
-      <input v-model="entered" @change="enterSum(entered)" id="entered" class="form__input-currency form-control form-control-sm" aria-describedby="emailHelp">
+      <input v-model="entered" type="number" @change="enterSum(entered)" id="entered" class="form__input-currency form-control form-control-sm" aria-describedby="emailHelp">
     </div>
 
     <div class="form__wrapper">
@@ -23,7 +23,7 @@
       </div>
     </div>
 
-    <button type="submit" class="btn btn-primary btn-sm">Submit</button>
+    <button :disabled="!selectedFirst || !selectedSecond" type="submit" class="btn btn-primary btn-sm">Submit</button>
 
   </form>
 </template>
@@ -32,7 +32,6 @@
 import { mapActions, mapGetters, mapMutations } from 'vuex'
 
 export default {
-  name: 'HelloWorld',
   data() {
     return {
       entered: '',

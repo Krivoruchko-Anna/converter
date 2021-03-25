@@ -1,7 +1,6 @@
 import { createStore } from 'vuex';
-import { fetchData, fetchCurrency } from "../utils/requests";
+import { fetchData, fetchCurrency, fetchLocalCurrency } from "../utils/requests";
 import { MAJOR_CURRENCIES } from "../utils/consts";
-import axios from "axios";
 
 export default createStore({
   state: {
@@ -17,6 +16,7 @@ export default createStore({
     isSelectedCurrency: true,
     isAnimated: false
   },
+
   getters: {
     listOfCurrencies(state) {
        const sortedArr = state.listOfCurrencies.sort().filter(item => {
@@ -55,13 +55,11 @@ export default createStore({
       return state.isAnimated;
     }
   },
+
   mutations: {
     enterSum(state, sum) {
-      const regExp = /\d/;
-      if (sum.match(regExp)) {
-        state.enteredSum = sum;
-        state.showOutcome = false;
-      }
+      state.enteredSum = sum;
+      state.showOutcome = false;
     },
     enterFirstCurrency(state, cur) {
       state.firstCurrency = cur;
@@ -86,24 +84,27 @@ export default createStore({
       state.selectedCurrency = cur;
     },
   },
+
   actions: {
     async fetchCurrencies({state}) {
       state.listOfCurrencies = await fetchData();
     },
+
     async fetchConvertedCurrency({commit, state}) {
       state.isAnimated = true;
       state.convertedCurrency = await fetchCurrency(state.firstCurrency, state.secondCurrency);
       commit('showResults');
     },
+
     async fetchCurrencyList({state}) {
       state.isAnimated = true;
       state.currencyObj = [];
       state.isSelectedCurrency = true;
 
-      await axios.get(`http://ip-api.com/json?fields=8413185`)
-          .then(response => state.selectedCurrency = response.data.currency);
+      await fetchLocalCurrency(state);
 
       const arrList = [];
+
       MAJOR_CURRENCIES.map(item => {
         const tempRes = fetchCurrency(item, state.selectedCurrency);
         arrList.push(tempRes);
@@ -118,7 +119,7 @@ export default createStore({
         });
     },
   }
-})
+});
 
 
 

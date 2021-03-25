@@ -15,6 +15,7 @@ export const fetchData = async () => {
 
         return list;
     }
+
     catch(e) {
         return [];
     }
@@ -30,9 +31,17 @@ export const fetchCurrency = async (firstCurrency, secondCurrency = 0) => {
             return result;
         }
     }
+
     catch (e) {
         return [];
     }
+}
+
+export const fetchLocalCurrency = async (state) => {
+    const local = axios.get(`http://ip-api.com/json?fields=8413185`)
+        .then(response => state.selectedCurrency = response.data.currency);
+
+    return local;
 }
 
 
