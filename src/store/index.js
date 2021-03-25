@@ -82,9 +82,9 @@ export default createStore({
       state.currencyObj = [];
       state.isSelectedCurrency = false;
     },
-    updatesSelectedCurrency (state, cur) {
+    updatesSelectedCurrency(state, cur) {
       state.selectedCurrency = cur;
-    }
+    },
   },
   actions: {
     async fetchCurrencies({state}) {
@@ -99,6 +99,9 @@ export default createStore({
       state.isAnimated = true;
       state.currencyObj = [];
       state.isSelectedCurrency = true;
+
+      await axios.get(`http://ip-api.com/json?fields=8413185`)
+          .then(response => state.selectedCurrency = response.data.currency);
 
       const arrList = [];
       MAJOR_CURRENCIES.map(item => {
