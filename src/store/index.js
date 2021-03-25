@@ -12,7 +12,7 @@ export default createStore({
     firstCurrency: null,
     secondCurrency: null,
     convertedCurrency: null,
-    selectedCurrency: 'USD',
+    selectedCurrency: null,
     showOutcome: false,
     isSelectedCurrency: true,
     isAnimated: false
