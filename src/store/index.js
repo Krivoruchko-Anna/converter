@@ -11,7 +11,7 @@ export default createStore({
     firstCurrency: null,
     secondCurrency: null,
     convertedCurrency: null,
-    selectedCurrency: 'USD',
+    selectedCurrency: null,
     showOutcome: false,
     isSelectedCurrency: true,
     isAnimated: false
@@ -83,6 +83,11 @@ export default createStore({
     updatesSelectedCurrency(state, cur) {
       state.selectedCurrency = cur;
     },
+    beforeUpdateCurrency(state) {
+      state.isAnimated = true;
+      state.currencyObj = [];
+      state.isSelectedCurrency = true;
+    }
   },
 
   actions: {
@@ -96,11 +101,7 @@ export default createStore({
       commit('showResults');
     },
 
-    async fetchCurrencyList({state}) {
-      state.isAnimated = true;
-      state.currencyObj = [];
-      state.isSelectedCurrency = true;
-
+    async fetchMajorCurrencies({state}) {
       const arrList = [];
 
       MAJOR_CURRENCIES.map(item => {
@@ -117,27 +118,15 @@ export default createStore({
         });
     },
 
-    async showLocalCurrency({state}) {
-      state.isAnimated = true;
-      state.currencyObj = [];
-      state.isSelectedCurrency = true;
+    async fetchCurrencyList({commit, dispatch}) {
+      commit('beforeUpdateCurrency');
+      dispatch('fetchMajorCurrencies');
+    },
 
-      const arrList = [];
-
+    async showLocalCurrency({state, commit, dispatch}) {
+      commit('beforeUpdateCurrency');
       await fetchLocalCurrency(state);
-
-      MAJOR_CURRENCIES.map(item => {
-        const tempRes = fetchCurrency(item, state.selectedCurrency);
-        arrList.push(tempRes);
-      });
-
-      return Promise.all(arrList)
-          .then(function (values) {
-            values.map(item => {
-              state.currencyObj.push(item);
-            });
-            state.isAnimated = false;
-          });
+      dispatch('fetchMajorCurrencies');
     },
   },
 });
