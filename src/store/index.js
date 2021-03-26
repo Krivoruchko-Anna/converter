@@ -1,5 +1,5 @@
 import { createStore } from 'vuex';
-import { fetchData, fetchCurrency, fetchLocalCurrency } from "../utils/requests";
+import { fetchData, fetchCurrency, fetchLocalCurrency} from "../utils/requests";
 import { MAJOR_CURRENCIES } from "../utils/consts";
 
 export default createStore({
@@ -11,7 +11,7 @@ export default createStore({
     firstCurrency: null,
     secondCurrency: null,
     convertedCurrency: null,
-    selectedCurrency: null,
+    selectedCurrency: 'USD',
     showOutcome: false,
     isSelectedCurrency: true,
     isAnimated: false
@@ -101,8 +101,6 @@ export default createStore({
       state.currencyObj = [];
       state.isSelectedCurrency = true;
 
-      await fetchLocalCurrency(state);
-
       const arrList = [];
 
       MAJOR_CURRENCIES.map(item => {
@@ -118,7 +116,30 @@ export default createStore({
           state.isAnimated = false;
         });
     },
-  }
+
+    async showLocalCurrency({state}) {
+      state.isAnimated = true;
+      state.currencyObj = [];
+      state.isSelectedCurrency = true;
+
+      const arrList = [];
+
+      await fetchLocalCurrency(state);
+
+      MAJOR_CURRENCIES.map(item => {
+        const tempRes = fetchCurrency(item, state.selectedCurrency);
+        arrList.push(tempRes);
+      });
+
+      return Promise.all(arrList)
+          .then(function (values) {
+            values.map(item => {
+              state.currencyObj.push(item);
+            });
+            state.isAnimated = false;
+          });
+    },
+  },
 });
 
 

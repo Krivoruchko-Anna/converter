@@ -52,7 +52,7 @@
     },
     mounted() {
       this.$store.dispatch('fetchCurrencies');
-      this.$store.dispatch('fetchCurrencyList');
+      this.$store.dispatch('showLocalCurrency');
     },
   }
 </script>
