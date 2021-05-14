@@ -23,7 +23,7 @@
       </div>
     </div>
 
-    <button :disabled="!selectedFirst || !selectedSecond" type="submit" class="btn btn-primary btn-sm">Submit</button>
+    <button :disabled="!selectedFirst || !selectedSecond" type="submit" class="btn btn-secondary btn-sm">Submit</button>
 
   </form>
 </template>
@@ -63,12 +63,27 @@ export default {
     background-color: white;
     box-shadow: rgb(35 55 80 / 30%) 0 6px 12px;
 
+    @media (max-width: 600px) {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
     &__wrapper {
       display: flex;
+
+      @media (max-width: 600px) {
+        width: 100%;
+      }
     }
 
     &__select-wrapper {
       width: 110px;
+
+      @media (max-width: 600px) {
+        width: 45%;
+      }
     }
 
     &__equals {
@@ -83,6 +98,10 @@ export default {
 
   .form-group {
     width: calc(100% - 400px);
+
+    @media (max-width: 600px) {
+      width: 100%;
+    }
   }
 
   .btn {

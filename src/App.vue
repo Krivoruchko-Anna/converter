@@ -35,13 +35,17 @@
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #758395;
-  padding-top: 60px;
+  padding: 60px 20px 0 20px;
 }
 
 .header {
   color: white;
   font-size: 28px;
   font-weight: bold;
+
+  @media (max-width: 600px) {
+    font-size: 24px;
+  }
 }
 
 .nav {
@@ -55,9 +59,19 @@
   background-color: white;
   box-shadow: rgb(35 55 80 / 30%) 0 6px 12px;
 
+  @media (max-width: 460px) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
   &__icon {
     width: 30px;
     height: 30px;
+
+    @media (max-width: 460px) {
+      margin: 10px 0;
+    }
   }
 
   a {
@@ -66,14 +80,24 @@
     color: #758395;
     text-decoration: none;
     transition: .4s all;
+
     &:hover {
       color: #a8b1bc;
+
+      @media (max-width: 600px) {
+        color: #758395;
+      }
     }
 
     &.router-link-exact-active {
       color: #2a84e5;
+
       &:hover {
         color: #7eb4ed;
+
+        @media (max-width: 600px) {
+          color: #2a84e5;
+        }
       }
     }
   }
