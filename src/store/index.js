@@ -57,6 +57,9 @@ export default createStore({
   },
 
   mutations: {
+    hideOutcome(state) {
+      state.showOutcome = false;
+    },
     enterSum(state, sum) {
       state.enteredSum = sum;
       state.showOutcome = false;

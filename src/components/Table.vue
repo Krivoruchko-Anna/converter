@@ -51,7 +51,7 @@
       ...mapMutations(['selectMainCurrency'])
     },
     mounted() {
-      this.$store.dispatch('fetchCurrencies');
+      this.fetchCurrencies();
       this.$store.dispatch('showLocalCurrency');
     },
   }

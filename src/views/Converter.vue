@@ -12,7 +12,7 @@
 
 <script>
 import Form from '@/components/Form.vue';
-import {mapGetters} from 'vuex'
+import {mapGetters, mapMutations} from 'vuex'
 
 export default {
   name: 'Converter',
@@ -21,6 +21,12 @@ export default {
   },
   computed: {
     ...mapGetters(['enteredSum', 'firstCurrency', 'secondCurrency', 'showOutcome', 'convertedCurrency'])
+  },
+  methods: {
+    ...mapMutations(['hideOutcome'])
+  },
+  mounted() {
+    this.hideOutcome();
   }
 }
 </script>
