@@ -2,7 +2,7 @@ import axios from "axios";
 
 const axiosInstance = axios.create({
   baseURL: 'https://free.currconv.com/api/v7',
-  params: {apiKey: 'eb83db00cef855952a36'}
+  params: {apiKey: '9c0ebc9c41ea4e619651'}
 });
 
 export const fetchData = async () => {
