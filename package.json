@@ -8,11 +8,10 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
-    "axios": "^0.21.1",
+    "axios": "^1.4.0",
     "core-js": "^3.6.5",
     "vue": "^3.0.0",
     "vue-axios": "^3.2.4",
-    "vue-material": "^1.0.0-beta-15",
     "vue-router": "^4.0.0-0",
     "vuex": "^4.0.0-0"
   },
@@ -29,7 +28,7 @@
     "eslint": "^6.7.2",
     "eslint-plugin-import": "^2.20.2",
     "eslint-plugin-vue": "^7.0.0",
-    "jquery": "^3.6.0",
+    "jquery": "^3.7.0",
     "popper.js": "^1.16.1",
     "sass": "^1.26.5",
     "sass-loader": "^8.0.2"
